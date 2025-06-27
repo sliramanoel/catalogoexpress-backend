@@ -24,7 +24,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rotas (sem o prefixo /api, pois o Netlify já o gerencia)
+// Rotas (temporariamente desativadas para diagnóstico)
+/*
 app.use('/auth', require('../routes/authRoutes'));
 app.use('/products', require('../routes/productRoutes'));
 app.use('/categories', require('../routes/categoryRoutes'));
@@ -32,6 +33,7 @@ app.use('/address', require('../routes/addressRoutes'));
 app.use('/cart', require('../routes/cartRoutes'));
 app.use('/orders', require('../routes/orderRoutes'));
 app.use('/users', require('../routes/userRoutes'));
+*/
 app.get('/ping', (req, res) => {
   res.status(200).send('Pong!');
 });
