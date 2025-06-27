@@ -13,3 +13,7 @@
   from = "/api/*"
   to = "/.netlify/functions/main/:splat"
   status = 200
+
+# Configuração específica para a função 'main' para desativar o bundler
+[functions."main"]
+  node_bundler = "none"
