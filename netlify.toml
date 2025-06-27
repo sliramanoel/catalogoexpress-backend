@@ -1,16 +1,14 @@
+# Configurações de Build
 [build]
   command = "npm install"
   functions = "functions"
-  publish = "/"
 
-[functions]
-  node_bundler = "esbuild"
-
+# Variáveis de Ambiente para as Funções
 [functions.environment]
   MONGO_URI = "mongodb+srv://silvaliramanoel086:7FOtJhJSCAbw09Pn@catalogoexpress.cp8lvzm.mongodb.net/?retryWrites=true&w=majority&appName=catalogoexpress"
   JWT_SECRET = "catalogoexpress_jwt_secret_2025"
 
-
+# Redirecionamento para a API
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"

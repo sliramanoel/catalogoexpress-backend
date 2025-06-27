@@ -6,8 +6,7 @@ const serverless = require('serverless-http'); // Adaptador para Netlify
 // URI do MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://silvaliramanoel086:7FOtJhJSCAbw09Pn@catalogoexpress.cp8lvzm.mongodb.net/?retryWrites=true&w=majority&appName=catalogoexpress';
 
-// Conecta ao banco de dados (TEMPORARIAMENTE DESATIVADO PARA TESTE)
-/*
+// Conecta ao banco de dados
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -16,7 +15,6 @@ mongoose.connect(MONGO_URI, {
 }).catch(err => {
   console.error('Erro ao conectar ao MongoDB:', err.message);
 });
-*/
 
 const app = express();
 
