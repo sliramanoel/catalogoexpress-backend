@@ -1,0 +1,56 @@
+const { MongoClient } = require('mongodb');
+
+// URL do MongoDB Atlas
+const uri = 'mongodb://silvaliramanoel086:7FOtJhJSCAbw09Pn@catalogoexpress-shard-00-00.cp8lvzm.mongodb.net:27017,catalogoexpress-shard-00-01.cp8lvzm.mongodb.net:27017,catalogoexpress-shard-00-02.cp8lvzm.mongodb.net:27017/catalogoexpress?ssl=false&replicaSet=atlas-123456-shard-0&authSource=admin&retryWrites=true&w=majority';
+
+exports.handler = async function(event, context) {
+  try {
+    // Conecta ao MongoDB Atlas
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 30000,
+      ssl: false
+    });
+
+    // Conecta ao MongoDB
+    await client.connect();
+
+    // Seleciona o banco de dados
+    const db = client.db('catalogoexpress');
+    
+    // Testa uma consulta simples
+    const products = await db.collection('products').find({}).limit(1).toArray();
+    
+    // Fecha a conexão
+    await client.close();
+    
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        success: true,
+        message: 'Conexão direta com MongoDB Atlas funcionando!',
+        products: products
+      })
+    };
+  } catch (error) {
+    console.error('Erro:', error);
+    return {
+      statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        success: false,
+        error: error.message
+      })
+    };
+  }
+};

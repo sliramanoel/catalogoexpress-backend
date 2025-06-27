@@ -1,0 +1,17 @@
+[build]
+  command = "npm install"
+  functions = "functions"
+  publish = "/"
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions.environment]
+  MONGO_URI = "mongodb+srv://silvaliramanoel086:7FOtJhJSCAbw09Pn@catalogoexpress.cp8lvzm.mongodb.net/?retryWrites=true&w=majority&appName=catalogoexpress"
+  JWT_SECRET = "catalogoexpress_jwt_secret_2025"
+
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
