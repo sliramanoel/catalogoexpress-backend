@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+
 
 // Função para gerar o token JWT
 const generateToken = (id) => {
