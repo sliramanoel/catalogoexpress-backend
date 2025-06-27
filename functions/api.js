@@ -6,8 +6,7 @@ const serverless = require('serverless-http'); // Adaptador para Netlify
 // URI do MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://silvaliramanoel086:7FOtJhJSCAbw09Pn@catalogoexpress.cp8lvzm.mongodb.net/?retryWrites=true&w=majority&appName=catalogoexpress';
 
-// Conexão com o banco de dados temporariamente desativada para diagnóstico
-/*
+// Conecta ao banco de dados
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -16,7 +15,6 @@ mongoose.connect(MONGO_URI, {
 }).catch(err => {
   console.error('Erro ao conectar ao MongoDB:', err.message);
 });
-*/
 
 const app = express();
 
@@ -24,8 +22,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rotas (temporariamente desativadas para diagnóstico)
-/*
+// Rotas (sem o prefixo /api, pois o Netlify já o gerencia)
 app.use('/auth', require('../routes/authRoutes'));
 app.use('/products', require('../routes/productRoutes'));
 app.use('/categories', require('../routes/categoryRoutes'));
@@ -33,7 +30,6 @@ app.use('/address', require('../routes/addressRoutes'));
 app.use('/cart', require('../routes/cartRoutes'));
 app.use('/orders', require('../routes/orderRoutes'));
 app.use('/users', require('../routes/userRoutes'));
-*/
 app.get('/ping', (req, res) => {
   res.status(200).send('Pong!');
 });
