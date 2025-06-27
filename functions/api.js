@@ -30,7 +30,9 @@ app.use('/address', require('../routes/addressRoutes'));
 app.use('/cart', require('../routes/cartRoutes'));
 app.use('/orders', require('../routes/orderRoutes'));
 app.use('/users', require('../routes/userRoutes'));
-app.use('/ping', require('../routes/pingRoutes'));
+app.get('/ping', (req, res) => {
+  res.status(200).send('Pong!');
+});
 
 // Tratamento de erros
 app.use((err, req, res, next) => {
