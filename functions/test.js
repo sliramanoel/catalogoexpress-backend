@@ -8,6 +8,6 @@ router.get('/ping', (req, res) => {
   res.status(200).send('Pong from test function!');
 });
 
-app.use('/.netlify/functions/test', router);
+app.use('/', router); // Monta o router na raiz
 
 module.exports.handler = serverless(app);
